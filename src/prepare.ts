@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import * as fs from 'fs'
+import * as fs from 'fs-extra'
 import { Context } from 'graphql-cli'
 import { GraphQLProjectConfig } from 'graphql-config'
 import { importSchema } from 'graphql-import'
@@ -223,9 +223,7 @@ export class Prepare {
       )
     }
 
-    if (!fs.existsSync(path.dirname(outputPath))) {
-      throw new Error(`Output path '${path.dirname(outputPath)}' does not exist.`)
-    }
+    fs.ensureDirSync(path.dirname(outputPath))
     return outputPath
   }
 }

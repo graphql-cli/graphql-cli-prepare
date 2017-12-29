@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/supergraphql/graphql-cli-prepare#readme",
   "devDependencies": {
+    "@types/fs-extra": "5.0.0",
     "@types/inquirer": "0.0.36",
     "@types/node": "8.5.2",
     "@types/yargs": "10.0.0",
@@ -40,6 +41,7 @@
   },
   "dependencies": {
     "chalk": "2.3.0",
+    "fs-extra": "5.0.0",
     "graphql-import": "0.1.9",
     "graphql-static-binding": "0.2.1",
     "lodash": "4.17.4"
