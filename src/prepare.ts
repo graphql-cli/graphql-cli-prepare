@@ -12,6 +12,7 @@ export class Prepare {
   private bundleExtensionConfig: { bundle: string } | undefined
   private projectName: string
   private project: GraphQLProjectConfig
+  private projectDisplayName = () => chalk.green(this.projectName)
 
   constructor(private context: Context, private argv: Arguments) {}
 
@@ -24,8 +25,12 @@ export class Prepare {
       const project: GraphQLProjectConfig = projects[projectName]
 
       this.setCurrentProject(project, projectName)
-      this.bundle()
-      this.bindings()
+      if (this.argv.bundle) {
+        this.bundle()
+      }
+      if (this.argv.bindings) {
+        this.bindings()
+      }
       this.save()
     }
   }
@@ -38,59 +43,46 @@ export class Prepare {
   bindings() {
     let bindingExtensionConfig: { binding: { output: string; generator: string } } | undefined
 
-    if (this.argv.bindings) {
-      if (this.argv.project || (!this.argv.project && has(this.project.config, 'extensions.binding'))) {
-        this.context.spinner.start(`Generating bindings for project ${chalk.green(this.projectName)}...`)
-        bindingExtensionConfig = this.processBindings(
-          this.bundleExtensionConfig ? this.bundleExtensionConfig.bundle : undefined
-        )
-        merge(this.project.extensions, bindingExtensionConfig)
-        this.context.spinner.succeed(
-          `Bindings for project ${chalk.green(this.projectName)} written to ${chalk.green(
-            bindingExtensionConfig.binding.output
-          )}`
-        )
-      } else {
-        this.context.spinner.info(
-          `Binding not configured for project ${chalk.green(this.projectName)}. Skipping`
-        )
-      }
+    if (this.argv.project || (!this.argv.project && has(this.project.config, 'extensions.binding'))) {
+      this.context.spinner.start(`Generating bindings for project ${this.projectDisplayName()}...`)
+      bindingExtensionConfig = this.processBindings(
+        this.bundleExtensionConfig ? this.bundleExtensionConfig.bundle : undefined
+      )
+      merge(this.project.extensions, bindingExtensionConfig)
+      this.context.spinner.succeed(
+        `Bindings for project ${this.projectDisplayName()} written to ${chalk.green(
+          bindingExtensionConfig.binding.output
+        )}`
+      )
+    } else {
+      this.context.spinner.info(`Binding not configured for project ${this.projectDisplayName()}. Skipping`)
     }
   }
 
   bundle() {
-    if (this.argv.bundle) {
-      if (this.argv.project || (!this.argv.project && has(this.project.config, 'extensions.bundle'))) {
-        this.context.spinner.start(
-          `Processing schema imports for project ${chalk.green(this.projectName)}...`
-        )
-        this.bundleExtensionConfig = this.processBundle()
-        merge(this.project.extensions, this.bundleExtensionConfig)
-        this.context.spinner.succeed(
-          `Bundled schema for project ${chalk.green(this.projectName)} written to ${chalk.green(
-            this.bundleExtensionConfig.bundle
-          )}`
-        )
-      } else {
-        this.context.spinner.info(
-          `Bundling not configured for project ${chalk.green(this.projectName)}. Skipping`
-        )
-      }
+    if (this.argv.project || (!this.argv.project && has(this.project.config, 'extensions.bundle'))) {
+      this.context.spinner.start(`Processing schema imports for project ${this.projectDisplayName()}...`)
+      this.bundleExtensionConfig = this.processBundle()
+      merge(this.project.extensions, this.bundleExtensionConfig)
+      this.context.spinner.succeed(
+        `Bundled schema for project ${this.projectDisplayName()} written to ${chalk.green(
+          this.bundleExtensionConfig.bundle
+        )}`
+      )
+    } else {
+      this.context.spinner.info(`Bundling not configured for project ${this.projectDisplayName()}. Skipping`)
     }
   }
 
   save() {
     if (this.argv.save) {
+      const configFile = path.basename(this.context.getConfig().configPath)
       this.context.spinner.start(
-        `Saving configuration for project ${chalk.green(this.projectName)} to ${chalk.green(
-          path.basename(this.context.getConfig().configPath)
-        )}...`
+        `Saving configuration for project ${this.projectDisplayName()} to ${chalk.green(configFile)}...`
       )
       this.saveConfig()
       this.context.spinner.succeed(
-        `Configuration for project ${chalk.green(this.projectName)} saved to ${chalk.green(
-          path.basename(this.context.getConfig().configPath)
-        )}`
+        `Configuration for project ${this.projectDisplayName()} saved to ${chalk.green(configFile)}`
       )
     }
   }

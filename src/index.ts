@@ -1,6 +1,6 @@
 import { CommandObject, Context } from 'graphql-cli'
 
-import { Prepare } from './Prepare'
+import { Prepare } from './prepare'
 
 const command: CommandObject = {
   command: 'prepare',
