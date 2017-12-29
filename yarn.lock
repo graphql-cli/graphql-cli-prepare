@@ -1259,7 +1259,18 @@ graphql-config-extension-graphcool@^0.2.0:
     graphcool-yml "^0.1.7"
     graphql-config "^1.1.1"
 
-graphql-config@1.1.3, graphql-config@^1.0.0, graphql-config@^1.1.1:
+graphql-config@1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/graphql-config/-/graphql-config-1.1.4.tgz#af09659f877b96451838de456e4e4f4be45be6dd"
+  dependencies:
+    graphql "^0.12.3"
+    graphql-import "^0.1.7"
+    graphql-request "^1.4.0"
+    js-yaml "^3.10.0"
+    minimatch "^3.0.4"
+    rimraf "^2.6.2"
+
+graphql-config@^1.0.0, graphql-config@^1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/graphql-config/-/graphql-config-1.1.3.tgz#4df65322ce553505b87e207d0b4e9119d048f696"
   dependencies:
