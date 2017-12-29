@@ -1,3 +1,6 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=06ca4780792a11f36b7ff3108a9533b83103071a3ebe7a5f13c4b1dca2219f4a
 language: node_js
 cache:
   directories:
@@ -7,6 +10,12 @@ notifications:
 node_js:
   - '9'
   - '8'
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 after_success:
   - npm run semantic-release
 branches:
