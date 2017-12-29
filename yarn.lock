@@ -73,7 +73,7 @@
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.6.0.tgz#383f456b26bc96c7889f0332079f4358b16c58dc"
 
-"@types/fs-extra@^5.0.0":
+"@types/fs-extra@5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-5.0.0.tgz#d3e225b35eb5c6d3a5a782c28219df365c781413"
   dependencies:
@@ -1056,17 +1056,17 @@ from2@^2.1.1:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
 
-fs-extra@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-4.0.3.tgz#0d852122e5bc5beb453fb028e9c0c9bf36340c94"
+fs-extra@5.0.0, fs-extra@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-5.0.0.tgz#414d0110cdd06705734d055652c5411260c31abd"
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
-fs-extra@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-5.0.0.tgz#414d0110cdd06705734d055652c5411260c31abd"
+fs-extra@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-4.0.3.tgz#0d852122e5bc5beb453fb028e9c0c9bf36340c94"
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^4.0.0"
@@ -1345,9 +1345,9 @@ graphql-schema-linter@0.0.25:
     graphql "^0.10.1"
     graphql-config "^1.0.0"
 
-graphql-static-binding@0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/graphql-static-binding/-/graphql-static-binding-0.2.1.tgz#138ee4b363fae503d32977d301821d8ce41ade6c"
+graphql-static-binding@0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/graphql-static-binding/-/graphql-static-binding-0.3.1.tgz#754cded0ebc802c05b2ef7eef8156b59c3d00e96"
   dependencies:
     graphql "0.12.3"
 
