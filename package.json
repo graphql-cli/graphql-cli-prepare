@@ -1,0 +1,47 @@
+{
+  "name": "graphql-cli-prepare",
+  "version": "0.0.0",
+  "description": "Plugin for graphql-cli to bundle schemas and generate bindings",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "tsc -d",
+    "pretest": "npm run build",
+    "lint": "tslint src/**/*.ts",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supergraphql/graphql-cli-prepare.git"
+  },
+  "keywords": [
+    "graphql",
+    "graphql-cli"
+  ],
+  "author": "Kim Brandwijk <kim.brandwijk@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/supergraphql/graphql-cli-prepare/issues"
+  },
+  "homepage": "https://github.com/supergraphql/graphql-cli-prepare#readme",
+  "devDependencies": {
+    "@types/inquirer": "0.0.36",
+    "@types/node": "8.5.2",
+    "@types/yargs": "10.0.0",
+    "graphql-cli": "2.2.0",
+    "graphql-config": "1.1.3",
+    "semantic-release": "11.0.2",
+    "tslint": "5.8.0",
+    "typescript": "2.6.2"
+  },
+  "release": {
+    "branch": "master"
+  },
+  "dependencies": {
+    "chalk": "2.3.0",
+    "graphql-import": "0.1.8",
+    "graphql-static-binding": "0.2.1",
+    "lodash": "4.17.4"
+  }
+}
