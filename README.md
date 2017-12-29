@@ -78,6 +78,7 @@ $ graphql prepare -p database --bindings -g ./myGenerator.js
 
 To store the project configuration for bundling and bindings, `graphql-cli-prepare` uses two extension keys in the `graphql-config` configuration file. These keys can be set manually, or using the `--save` parameter.
 ```diff
+# ./.graphqlconfig.yml
 projects:
   app:
     schemaPath: src/schema.graphql
