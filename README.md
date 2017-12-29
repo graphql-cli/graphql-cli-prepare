@@ -58,7 +58,8 @@ i Bundling not configured for project database. Skipping
 ## Advanced topics
 
 ### Available generators
-Out of the box, the following generators are provided by [`graphql-static-binding`](https://github.com/supergraphql/graphql-static-binding):   
+Out of the box, the following generators are provided by [`graphql-static-binding`](https://github.com/supergraphql/graphql-static-binding):
+
 | Generator    | Purpose                                      |
 | ------------ | -------------------------------------------- |
 | graphcool-ts | Typescript bindings for Graphcool endpoints  |
