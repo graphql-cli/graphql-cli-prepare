@@ -38,6 +38,7 @@ export class Prepare {
   setCurrentProject(project: GraphQLProjectConfig, projectName: string): void {
     this.project = project
     this.projectName = projectName
+    this.bundleExtensionConfig = undefined
   }
 
   bindings() {
