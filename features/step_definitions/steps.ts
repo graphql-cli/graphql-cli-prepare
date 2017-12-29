@@ -8,7 +8,9 @@ defineSupportCode(({ Given, When, Then}) => {
     })
     
     When('I run the command', () => {
-        handler({prompt: null, spinner: null, getProjectConfig: null, getConfig: null}, { bundle: true, bindings: true})
+        try{
+            handler({prompt: null, spinner: null, getProjectConfig: null, getConfig: null}, { bundle: true, bindings: true})
+        } catch {}
     })
     
     Then('it should work', () => {
