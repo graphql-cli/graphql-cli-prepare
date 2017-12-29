@@ -58,13 +58,13 @@ i Bundling not configured for project database. Skipping
 ## Advanced topics
 
 ### Available generators
-Out of the box, the following generators are provided by [`graphql-static-binding`](https://github.com/supergraphql/graphql-static-binding):
-| Generator | Purpose |
-|-|-|
-| graphcool-ts | Typescript bindings for Graphcool endpoints |
-| graphcool-js | Javascript bindings for Graphcool endpoints |
-| binding-ts | Typescript bindings for any GraphQL endpoint |
-| binding-js | Javascript bindings for any GraphQL endpoint |
+Out of the box, the following generators are provided by [`graphql-static-binding`](https://github.com/supergraphql/graphql-static-binding):   
+| Generator    | Purpose                                      |
+| ------------ | -------------------------------------------- |
+| graphcool-ts | Typescript bindings for Graphcool endpoints  |
+| graphcool-js | Javascript bindings for Graphcool endpoints  |
+| binding-ts   | Typescript bindings for any GraphQL endpoint |
+| binding-js   | Javascript bindings for any GraphQL endpoint |
 
 ### Using your own generator
 You can also use your own generator. To do so, you can pass a file path to the `--generator` parameter:
