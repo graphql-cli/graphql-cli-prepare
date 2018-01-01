@@ -1,5 +1,5 @@
 # graphql-cli-prepare [![npm](https://img.shields.io/npm/v/graphql-cli-prepare.svg?style=for-the-badge)](https://www.npmjs.com/package/graphql-cli-prepare)[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=for-the-badge)](https://github.com/semantic-release/semantic-release)
-[![Travis](https://img.shields.io/travis/supergraphql/graphql-cli-prepare.svg?style=for-the-badge)](https://travis-ci.org/supergraphql/graphql-cli-prepare)[![Greenkeeper badge](https://img.shields.io/badge/renovate-enabled-brightgreen.svg?style=for-the-badge)](https://renovateapp.com/)[![Code Climate](https://img.shields.io/codeclimate/maintainability/supergraphql/graphql-cli-prepare.svg?style=for-the-badge)](https://codeclimate.com/github/supergraphql/graphql-cli-prepare)   
+[![CircleCI](https://img.shields.io/circleci/project/github/supergraphql/graphql-cli-prepare.svg?style=for-the-badge)](https://circleci.com/gh/supergraphql/graphql-cli-prepare)[![Greenkeeper badge](https://img.shields.io/badge/renovate-enabled-brightgreen.svg?style=for-the-badge)](https://renovateapp.com/)[![Code Climate](https://img.shields.io/codeclimate/maintainability/supergraphql/graphql-cli-prepare.svg?style=for-the-badge)](https://codeclimate.com/github/supergraphql/graphql-cli-prepare)   
 Plugin for [`graphql-cli`](https://github.com/graphql-cli/graphql-cli) to bundle schemas using [`graphql-import`](https://github.com/graphcool/graphql-import) and generate bindings using [`graphql-static-binding`](https://github.com/supergraphql/graphql-static-binding).
 
 ## Installation
@@ -24,6 +24,7 @@ Options:
   --bundle         Process schema imports           [boolean] [default: "false"]
   --bindings       Generate bindings                [boolean] [default: "false"]
   --generator, -g  Generator used to generate bindings                  [string]
+  --verbose        Show verbose output messages     [boolean] [default: "false"]
   -h, --help       Show help                                           [boolean]
   -v, --version    Show version number                                 [boolean]
 ```
@@ -85,12 +86,12 @@ projects:
     extensions:
       endpoints:
         default: 'http://localhost:4000'
-+       bundle: src/generated/app.graphql
++       prepare-bundle: src/generated/app.graphql
   database:
     schemaPath: database/schema.generated.graphql
     extensions:
       graphcool: graphcool.yml
-+     binding:
++     prepare-binding:
 +       output: src/generated/database.ts
 +       generator: graphcool-ts
 
