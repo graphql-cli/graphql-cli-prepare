@@ -13,11 +13,10 @@ export class Prepare {
   private bundleExtensionConfig: { 'prepare-bundle': string } | undefined
   private projectName: string
   private project: GraphQLProjectConfig
-  private projectDisplayName = () => chalk.green(this.projectName)
 
   constructor(private context: Context, private argv: Arguments) {}
 
-  async handle() {
+  public async handle() {
     this.config = await this.context.getConfig()
 
     // Get projects
@@ -38,13 +37,13 @@ export class Prepare {
     }
   }
 
-  setCurrentProject(project: GraphQLProjectConfig, projectName: string): void {
+  private setCurrentProject(project: GraphQLProjectConfig, projectName: string): void {
     this.project = project
     this.projectName = projectName
     this.bundleExtensionConfig = undefined
   }
 
-  bindings() {
+  private bindings() {
     let bindingExtensionConfig: { 'prepare-binding': { output: string; generator: string } } | undefined
 
     if (
@@ -70,7 +69,7 @@ export class Prepare {
     }
   }
 
-  bundle() {
+  private bundle() {
     if (
       this.argv.project ||
       (!this.argv.project &&
@@ -92,7 +91,7 @@ export class Prepare {
     }
   }
 
-  save() {
+  private save() {
     if (this.argv.save) {
       const configFile = path.basename(this.config.configPath)
       this.context.spinner.start(
@@ -105,7 +104,7 @@ export class Prepare {
     }
   }
 
-  getProjectConfig(): { [name: string]: GraphQLProjectConfig } {
+  private getProjectConfig(): { [name: string]: GraphQLProjectConfig } {
     let projects: { [name: string]: GraphQLProjectConfig } | undefined
     if (this.argv.project) {
       if (Array.isArray(this.argv.project)) {
@@ -127,7 +126,7 @@ export class Prepare {
     return projects
   }
 
-  processBundle(): { 'prepare-bundle': string } {
+  private processBundle(): { 'prepare-bundle': string } {
     const outputPath: string = this.determineBundleOutputPath()
     const schemaPath: string = this.determineSchemaPath()
 
@@ -138,7 +137,7 @@ export class Prepare {
     return { 'prepare-bundle': outputPath }
   }
 
-  processBindings(
+  private processBindings(
     schemaPath: string | undefined
   ): { 'prepare-binding': { output: string; generator: string } } {
     const generator: string = this.determineGenerator()
@@ -154,7 +153,7 @@ export class Prepare {
     return { 'prepare-binding': { output: outputPath, generator: generator } }
   }
 
-  saveConfig() {
+  private saveConfig() {
     if (has(this.project.config, 'extensions.bundle')) {
       delete this.project.config.extensions!.bundle
     }
@@ -172,7 +171,7 @@ export class Prepare {
    * @param {(string | undefined)} schemaPath Schema path from bundling
    * @returns {string} Input schema path to be used for binding generatio.
    */
-  determineInputSchema(schemaPath: string | undefined): string {
+  private determineInputSchema(schemaPath: string | undefined): string {
     const bundleDefined = has(this.project.config, 'extensions.prepare-bundle.output')
     const oldBundleDefined = has(this.project.config, 'extensions.bundle.output')
     // schemaPath is only set when bundle ran
@@ -204,7 +203,7 @@ export class Prepare {
    *
    * @returns {string} Input schema path for bundling
    */
-  determineSchemaPath(): string {
+  private determineSchemaPath(): string {
     if (this.project.schemaPath) {
       return this.project.schemaPath
     }
@@ -217,7 +216,7 @@ export class Prepare {
    * @param {string} generator Command line parameter for generator
    * @returns {string} Generator to be used
    */
-  determineGenerator(): string {
+  private determineGenerator(): string {
     if (this.argv.generator) {
       return this.argv.generator
     }
@@ -243,7 +242,7 @@ export class Prepare {
    * @param {string} extension File extension for output file
    * @returns Output path
    */
-  determineBindingOutputPath(extension: string) {
+  private determineBindingOutputPath(extension: string) {
     let outputPath: string
     if (this.argv.output) {
       outputPath = path.join(this.argv.output, `${this.projectName}.${extension}`)
@@ -271,7 +270,7 @@ export class Prepare {
    *
    * @returns Output path
    */
-  determineBundleOutputPath() {
+  private determineBundleOutputPath() {
     let outputPath: string
     if (this.argv.output) {
       outputPath = path.join(this.argv.output, `${this.projectName}.graphql`)
@@ -293,4 +292,6 @@ export class Prepare {
     fs.ensureDirSync(path.dirname(outputPath))
     return outputPath
   }
+
+  private projectDisplayName = () => chalk.green(this.projectName)
 }
