@@ -63,7 +63,7 @@ export class Prepare {
           bindingExtensionConfig['prepare-binding'].output
         )}`
       )
-    } else {
+    } else if (this.argv.verbose) {
       this.context.spinner.info(
         `Binding not configured for project ${this.projectDisplayName()}. Skipping`
       )
@@ -85,7 +85,7 @@ export class Prepare {
           this.bundleExtensionConfig['prepare-bundle']
         )}`
       )
-    } else {
+    } else if (this.argv.verbose) {
       this.context.spinner.info(
         `Bundling not configured for project ${this.projectDisplayName()}. Skipping`
       )

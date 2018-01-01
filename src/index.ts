@@ -32,6 +32,12 @@ const command: CommandObject = {
       alias: 'g',
       describe: 'Generator used to generate bindings',
       type: 'string'
+    },
+    verbose: {
+      alias: 'v',
+      describe: 'Show verbose output messages',
+      type: 'boolean',
+      default: 'false'
     }
   },
 
