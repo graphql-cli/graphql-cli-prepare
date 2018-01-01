@@ -1,12 +1,10 @@
-import { Context } from 'graphql-cli'
-
 import { Prepare } from './prepare'
 import { CommandBuilder } from 'yargs'
 
 const command: {
   command: string
   describe?: string
-  handler: (context: Context, argv: any) => any
+  handler: (context: any, argv: any) => any
   builder?: CommandBuilder
 } = {
   command: 'prepare',
