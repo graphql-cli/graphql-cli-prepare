@@ -1,8 +1,14 @@
-import { CommandObject, Context } from 'graphql-cli'
+import { Context } from 'graphql-cli'
 
 import { Prepare } from './prepare'
+import { CommandBuilder } from 'yargs'
 
-const command: CommandObject = {
+const command: {
+  command: string
+  describe?: string
+  handler: (context: Context, argv: any) => any
+  builder?: CommandBuilder
+} = {
   command: 'prepare',
   describe: 'Bundle schemas and generate bindings',
 
