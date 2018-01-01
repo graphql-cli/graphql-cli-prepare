@@ -34,7 +34,6 @@ const command: CommandObject = {
       type: 'string'
     },
     verbose: {
-      alias: 'v',
       describe: 'Show verbose output messages',
       type: 'boolean',
       default: 'false'
