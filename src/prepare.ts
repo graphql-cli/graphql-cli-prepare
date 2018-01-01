@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import * as fs from 'fs-extra'
 import { Context } from 'graphql-cli'
-import { GraphQLProjectConfig } from 'graphql-config'
+import { GraphQLConfig, GraphQLProjectConfig } from 'graphql-config'
 import { importSchema } from 'graphql-import'
 import { generateCode } from 'graphql-static-binding'
 import { get, has, merge } from 'lodash'
@@ -9,14 +9,17 @@ import * as path from 'path'
 import { Arguments } from 'yargs'
 
 export class Prepare {
-  private bundleExtensionConfig: { bundle: string } | undefined
+  private config: GraphQLConfig
+  private bundleExtensionConfig: { 'prepare-bundle': string } | undefined
   private projectName: string
   private project: GraphQLProjectConfig
   private projectDisplayName = () => chalk.green(this.projectName)
 
   constructor(private context: Context, private argv: Arguments) {}
 
-  handle() {
+  async handle() {
+    this.config = await this.context.getConfig()
+
     // Get projects
     const projects: { [name: string]: GraphQLProjectConfig } = this.getProjectConfig()
 
@@ -42,42 +45,56 @@ export class Prepare {
   }
 
   bindings() {
-    let bindingExtensionConfig: { binding: { output: string; generator: string } } | undefined
+    let bindingExtensionConfig: { 'prepare-binding': { output: string; generator: string } } | undefined
 
-    if (this.argv.project || (!this.argv.project && has(this.project.config, 'extensions.binding'))) {
+    if (
+      this.argv.project ||
+      (!this.argv.project &&
+        (has(this.project.config, 'extensions.prepare-binding') ||
+          has(this.project.config, 'extension.binding')))
+    ) {
       this.context.spinner.start(`Generating bindings for project ${this.projectDisplayName()}...`)
       bindingExtensionConfig = this.processBindings(
-        this.bundleExtensionConfig ? this.bundleExtensionConfig.bundle : undefined
+        this.bundleExtensionConfig ? this.bundleExtensionConfig['prepare-bundle'] : undefined
       )
       merge(this.project.extensions, bindingExtensionConfig)
       this.context.spinner.succeed(
         `Bindings for project ${this.projectDisplayName()} written to ${chalk.green(
-          bindingExtensionConfig.binding.output
+          bindingExtensionConfig['prepare-binding'].output
         )}`
       )
     } else {
-      this.context.spinner.info(`Binding not configured for project ${this.projectDisplayName()}. Skipping`)
+      this.context.spinner.info(
+        `Binding not configured for project ${this.projectDisplayName()}. Skipping`
+      )
     }
   }
 
   bundle() {
-    if (this.argv.project || (!this.argv.project && has(this.project.config, 'extensions.bundle'))) {
+    if (
+      this.argv.project ||
+      (!this.argv.project &&
+        (has(this.project.config, 'extensions.prepare-bundle') ||
+          has(this.project.config, 'extensions.bundle')))
+    ) {
       this.context.spinner.start(`Processing schema imports for project ${this.projectDisplayName()}...`)
       this.bundleExtensionConfig = this.processBundle()
       merge(this.project.extensions, this.bundleExtensionConfig)
       this.context.spinner.succeed(
         `Bundled schema for project ${this.projectDisplayName()} written to ${chalk.green(
-          this.bundleExtensionConfig.bundle
+          this.bundleExtensionConfig['prepare-bundle']
         )}`
       )
     } else {
-      this.context.spinner.info(`Bundling not configured for project ${this.projectDisplayName()}. Skipping`)
+      this.context.spinner.info(
+        `Bundling not configured for project ${this.projectDisplayName()}. Skipping`
+      )
     }
   }
 
   save() {
     if (this.argv.save) {
-      const configFile = path.basename(this.context.getConfig().configPath)
+      const configFile = path.basename(this.config.configPath)
       this.context.spinner.start(
         `Saving configuration for project ${this.projectDisplayName()} to ${chalk.green(configFile)}...`
       )
@@ -93,16 +110,14 @@ export class Prepare {
     if (this.argv.project) {
       if (Array.isArray(this.argv.project)) {
         projects = {}
-        this.argv.project.map((p: string) =>
-          merge(projects, { [p]: this.context.getConfig().getProjectConfig(p) })
-        )
+        this.argv.project.map((p: string) => merge(projects, { [p]: this.config.getProjectConfig(p) }))
       } else {
         // Single project mode
-        projects = { [this.argv.project]: this.context.getProjectConfig() }
+        projects = { [this.argv.project]: this.config.getProjectConfig(this.argv.project) }
       }
     } else {
       // Process all projects
-      projects = this.context.getConfig().getProjects()
+      projects = this.config.getProjects()
     }
 
     if (!projects) {
@@ -112,34 +127,41 @@ export class Prepare {
     return projects
   }
 
-  processBundle(): { bundle: string } {
-    const outputPath: string = this.determineOutputPath('graphql', 'bundle')
+  processBundle(): { 'prepare-bundle': string } {
+    const outputPath: string = this.determineBundleOutputPath()
     const schemaPath: string = this.determineSchemaPath()
 
     const finalSchema = importSchema(schemaPath)
 
     fs.writeFileSync(outputPath, finalSchema, { flag: 'w' })
 
-    return { bundle: outputPath }
+    return { 'prepare-bundle': outputPath }
   }
 
-  processBindings(schemaPath: string | undefined): { binding: { output: string; generator: string } } {
+  processBindings(
+    schemaPath: string | undefined
+  ): { 'prepare-binding': { output: string; generator: string } } {
     const generator: string = this.determineGenerator()
     // TODO: This does not support custom generators
     const extension = generator.endsWith('ts') ? 'ts' : 'js'
-    const outputPath: string = this.determineOutputPath(extension, 'binding.output')
+    const outputPath: string = this.determineBindingOutputPath(extension)
     const schema: string = this.determineInputSchema(schemaPath)
 
     const schemaContents: string = fs.readFileSync(schema, 'utf-8')
     const finalSchema: string = generateCode(schemaContents, generator)
     fs.writeFileSync(outputPath, finalSchema, { flag: 'w' })
 
-    return { binding: { output: outputPath, generator: generator } }
+    return { 'prepare-binding': { output: outputPath, generator: generator } }
   }
 
   saveConfig() {
-    const config = this.context.getConfig()
-    config.saveConfig(this.project.config, this.projectName)
+    if (has(this.project.config, 'extensions.bundle')) {
+      delete this.project.config.extensions!.bundle
+    }
+    if (has(this.project.config, 'extensions.binding')) {
+      delete this.project.config.extensions!.binding
+    }
+    this.config.saveConfig(this.project.config, this.projectName)
   }
 
   /**
@@ -151,11 +173,14 @@ export class Prepare {
    * @returns {string} Input schema path to be used for binding generatio.
    */
   determineInputSchema(schemaPath: string | undefined): string {
-    const bundleDefined = has(this.project.config, 'extensions.bundle.output')
+    const bundleDefined = has(this.project.config, 'extensions.prepare-bundle.output')
+    const oldBundleDefined = has(this.project.config, 'extensions.bundle.output')
     // schemaPath is only set when bundle ran
     if (!schemaPath) {
       if (bundleDefined) {
         // Otherwise, use bundle output schema if defined
+        schemaPath = get(this.project.config, 'extensions.prepare-bundle.output')
+      } else if (oldBundleDefined) {
         schemaPath = get(this.project.config, 'extensions.bundle.output')
       } else if (this.project.schemaPath) {
         // Otherwise, use project schemaPath
@@ -197,7 +222,15 @@ export class Prepare {
       return this.argv.generator
     }
     if (has(this.project.config, 'extensions.binding.generator')) {
+      if (!this.argv.save) {
+        this.context.spinner.warn(
+          `Deprecated extension key 'binding.generator' found in config file. Use '--save' to update to 'prepare-binding.generator'.`
+        )
+      }
       return get(this.project.config, 'extensions.binding.generator')
+    }
+    if (has(this.project.config, 'extensions.prepare-binding.generator')) {
+      return get(this.project.config, 'extensions.prepare-binding.generator')
     }
     throw new Error(
       'Generator cannot be determined. No existing configuration found and no generator parameter specified.'
@@ -205,18 +238,52 @@ export class Prepare {
   }
 
   /**
-   * Determine output path. Provided path takes precedence over value from config
+   * Determine output path for binding. Provided path takes precedence over value from config
    *
    * @param {string} extension File extension for output file
-   * @param {string} key Extension key containing current output setting
    * @returns Output path
    */
-  determineOutputPath(extension: string, key: string) {
+  determineBindingOutputPath(extension: string) {
     let outputPath: string
     if (this.argv.output) {
       outputPath = path.join(this.argv.output, `${this.projectName}.${extension}`)
-    } else if (has(this.project.config, `extensions.${key}`)) {
-      outputPath = get(this.project.config, `extensions.${key}`)
+    } else if (has(this.project.config, `extensions.binding.output`)) {
+      if (!this.argv.save) {
+        this.context.spinner.warn(
+          `Deprecated extension key 'binding.output' found in config file. Use '--save' to update to 'prepare-binding.output'.`
+        )
+      }
+      outputPath = get(this.project.config, `extensions.binding.output`)
+    } else if (has(this.project.config, `extensions.prepare-binding.output`)) {
+      outputPath = get(this.project.config, `extensions.prepare-binding.output`)
+    } else {
+      throw new Error(
+        'Output path cannot be determined. No existing configuration found and no output parameter specified.'
+      )
+    }
+
+    fs.ensureDirSync(path.dirname(outputPath))
+    return outputPath
+  }
+
+  /**
+   * Determine output path for bundle. Provided path takes precedence over value from config
+   *
+   * @returns Output path
+   */
+  determineBundleOutputPath() {
+    let outputPath: string
+    if (this.argv.output) {
+      outputPath = path.join(this.argv.output, `${this.projectName}.graphql`)
+    } else if (has(this.project.config, `extensions.bundle`)) {
+      if (!this.argv.save) {
+        this.context.spinner.warn(
+          `Deprecated extension key 'bundle' found in config file. Use '--save' to update to 'prepare-bundle'.`
+        )
+      }
+      outputPath = get(this.project.config, `extensions.bundle`)
+    } else if (has(this.project.config, `extensions.prepare-bundle`)) {
+      outputPath = get(this.project.config, `extensions.prepare-bundle`)
     } else {
       throw new Error(
         'Output path cannot be determined. No existing configuration found and no output parameter specified.'
