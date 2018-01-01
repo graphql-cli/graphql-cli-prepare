@@ -41,12 +41,13 @@ const command: CommandObject = {
     }
   },
 
-  handler: (context: Context, argv) => {
+  handler: async (context: Context, argv) => {
     if (!argv.bundle && !argv.bindings) {
       argv.bundle = argv.bindings = true
     }
 
-    new Prepare(context, argv).handle()
+    const prepare = new Prepare(context, argv)
+    await prepare.handle()
   }
 }
 
