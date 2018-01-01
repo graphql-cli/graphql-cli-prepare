@@ -44,7 +44,7 @@ const command: {
     }
   },
 
-  handler: async (context: Context, argv) => {
+  handler: async (context: any, argv) => {
     if (!argv.bundle && !argv.bindings) {
       argv.bundle = argv.bindings = true
     }
