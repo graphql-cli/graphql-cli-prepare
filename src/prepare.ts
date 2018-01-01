@@ -51,7 +51,7 @@ export class Prepare {
       this.argv.project ||
       (!this.argv.project &&
         (has(this.project.config, 'extensions.prepare-binding') ||
-          has(this.project.config, 'extension.binding')))
+          has(this.project.config, 'extensions.binding')))
     ) {
       this.context.spinner.start(`Generating bindings for project ${this.projectDisplayName()}...`)
       bindingExtensionConfig = this.processBindings(
