@@ -52,8 +52,6 @@ After you have set up bundling and binding generation for all projects, you can 
 ```shell
 $ graphql prepare
 √ Bundled schema for project app written to src/generated/app.graphql
-i Binding not configured for project app. Skipping
-i Bundling not configured for project database. Skipping
 √ Bindings for project database written to src/generated/database.ts
 ```
 ## Advanced topics
