@@ -16,9 +16,9 @@
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@semantic-release/error/-/error-2.1.0.tgz#44771f676f5b148da309111285a97901aa95a6e0"
 
-"@semantic-release/github@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@semantic-release/github/-/github-3.0.0.tgz#364bec879b4bc0955635866585514df0b4e640c0"
+"@semantic-release/github@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@semantic-release/github/-/github-3.0.1.tgz#e1fe6128562dcd1d9acd9a4143ecb4ed8be6ace0"
   dependencies:
     "@semantic-release/error" "^2.1.0"
     debug "^3.1.0"
@@ -2458,13 +2458,13 @@ scuid@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/scuid/-/scuid-1.0.2.tgz#3e62465671a0b87435e3a377957a20e45aac5b40"
 
-semantic-release@12.0.0:
-  version "12.0.0"
-  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-12.0.0.tgz#00986f2b1988108776d35a69544b3110a1066408"
+semantic-release@12.1.0:
+  version "12.1.0"
+  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-12.1.0.tgz#0cfad7fc4057828812708dbc4d89c460a6d63867"
   dependencies:
     "@semantic-release/commit-analyzer" "^5.0.0"
     "@semantic-release/error" "^2.1.0"
-    "@semantic-release/github" "^3.0.0"
+    "@semantic-release/github" "^3.0.1"
     "@semantic-release/npm" "^2.0.0"
     "@semantic-release/release-notes-generator" "^6.0.0"
     chalk "^2.3.0"
