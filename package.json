@@ -28,7 +28,7 @@
   "devDependencies": {
     "@types/fs-extra": "5.0.0",
     "@types/inquirer": "0.0.36",
-    "@types/node": "8.5.2",
+    "@types/node": "8.5.4",
     "@types/yargs": "10.0.1",
     "graphql-config": "1.1.4",
     "semantic-release": "12.1.0",
