@@ -1,6 +1,5 @@
 import chalk from 'chalk'
 import * as fs from 'fs-extra'
-import { Context } from 'graphql-cli'
 import { GraphQLConfig, GraphQLProjectConfig } from 'graphql-config'
 import { importSchema } from 'graphql-import'
 import { generateCode } from 'graphql-static-binding'
@@ -14,7 +13,7 @@ export class Prepare {
   private projectName: string
   private project: GraphQLProjectConfig
 
-  constructor(private context: Context, private argv: Arguments) {}
+  constructor(private context: any, private argv: Arguments) {}
 
   public async handle() {
     this.config = await this.context.getConfig()
