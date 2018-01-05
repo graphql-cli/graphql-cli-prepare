@@ -1231,7 +1231,7 @@ marked-terminal@^2.0.0:
     lodash.assign "^4.2.0"
     node-emoji "^1.4.1"
 
-marked@^0.3.6:
+marked@^0.3.9:
   version "0.3.9"
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.9.tgz#54ce6a57e720c3ac6098374ec625fcbcc97ff290"
 
@@ -1698,9 +1698,9 @@ safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@~5.1.0, 
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
 
-semantic-release@12.1.0:
-  version "12.1.0"
-  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-12.1.0.tgz#0cfad7fc4057828812708dbc4d89c460a6d63867"
+semantic-release@12.1.1:
+  version "12.1.1"
+  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-12.1.1.tgz#630703cec214a00c1d80bc7268e88b6f8d5f8437"
   dependencies:
     "@semantic-release/commit-analyzer" "^5.0.0"
     "@semantic-release/error" "^2.1.0"
@@ -1716,7 +1716,7 @@ semantic-release@12.1.0:
     get-stream "^3.0.0"
     git-log-parser "^1.2.0"
     lodash "^4.0.0"
-    marked "^0.3.6"
+    marked "^0.3.9"
     marked-terminal "^2.0.0"
     p-reduce "^1.0.0"
     read-pkg-up "^3.0.0"
