@@ -861,29 +861,20 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
-graphql-config@1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/graphql-config/-/graphql-config-1.1.4.tgz#af09659f877b96451838de456e4e4f4be45be6dd"
+graphql-config@1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/graphql-config/-/graphql-config-1.1.5.tgz#c8de9cdaef946ceb4c4ab0acc970db5805c90dbf"
   dependencies:
     graphql "^0.12.3"
-    graphql-import "^0.1.7"
+    graphql-import "^0.2.0"
     graphql-request "^1.4.0"
     js-yaml "^3.10.0"
     minimatch "^3.0.4"
     rimraf "^2.6.2"
 
-graphql-import@0.2.0:
+graphql-import@0.2.0, graphql-import@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/graphql-import/-/graphql-import-0.2.0.tgz#4877fef467d8a9255e6760c3988f6c00018e94af"
-  dependencies:
-    "@types/graphql" "0.11.7"
-    "@types/lodash" "^4.14.85"
-    graphql "^0.12.3"
-    lodash "^4.17.4"
-
-graphql-import@^0.1.7:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/graphql-import/-/graphql-import-0.1.8.tgz#403b9f9dd83a206a9808ae2ab6afab4040e0359d"
   dependencies:
     "@types/graphql" "0.11.7"
     "@types/lodash" "^4.14.85"
