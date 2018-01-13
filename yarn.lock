@@ -875,14 +875,7 @@ graphql-config@1.1.7:
     js-yaml "^3.10.0"
     minimatch "^3.0.4"
 
-graphql-import@0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/graphql-import/-/graphql-import-0.3.1.tgz#953f31323e851b5246602ea8e3d36a95b8fc47b5"
-  dependencies:
-    graphql "^0.12.3"
-    lodash "^4.17.4"
-
-graphql-import@^0.4.0:
+graphql-import@0.4.0, graphql-import@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/graphql-import/-/graphql-import-0.4.0.tgz#84c1b2dfde1c9af26525bd87a6d2f84a63853501"
   dependencies:
