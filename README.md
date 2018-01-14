@@ -4,11 +4,7 @@ Plugin for [`graphql-cli`](https://github.com/graphql-cli/graphql-cli) to bundle
 
 ## Installation
 
-Install `graphql-cli-prepare` either globally (recommended) or locally using your favorite package manager:
-```shell
-$ yarn [global] add graphql-cli-prepare
-$ npm install graphql-cli-prepare [--global]
-```
+The `graphql-cli-prepare` plugin is shipped with `graphql-cli`.
 
 ## Usage
 ```
