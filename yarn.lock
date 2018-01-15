@@ -888,9 +888,9 @@ graphql-request@^1.4.0:
   dependencies:
     cross-fetch "1.1.1"
 
-graphql-static-binding@0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/graphql-static-binding/-/graphql-static-binding-0.7.0.tgz#642ca2829d6720f25e52d63116ca7cb194bbef8f"
+graphql-static-binding@0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/graphql-static-binding/-/graphql-static-binding-0.8.0.tgz#35858dfc89648573b9a5b6b61b431101b6b376af"
   dependencies:
     cucumber-html-reporter "^3.0.4"
     graphql "0.12.3"
