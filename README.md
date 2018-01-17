@@ -1,5 +1,6 @@
 # graphql-cli-prepare [![npm](https://img.shields.io/npm/v/graphql-cli-prepare.svg?style=flat-square)](https://www.npmjs.com/package/graphql-cli-prepare)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)[![CircleCI](https://img.shields.io/circleci/project/github/supergraphql/graphql-cli-prepare.svg?style=flat-square)](https://circleci.com/gh/supergraphql/graphql-cli-prepare)[![Greenkeeper badge](https://img.shields.io/badge/renovate-enabled-brightgreen.svg?style=flat-square)](https://renovateapp.com/)[![Code Climate](https://img.shields.io/codeclimate/maintainability/supergraphql/graphql-cli-prepare.svg?style=flat-square)](https://codeclimate.com/github/supergraphql/graphql-cli-prepare)   
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)[![CircleCI](https://img.shields.io/circleci/project/github/supergraphql/graphql-cli-prepare.svg?style=flat-square)](https://circleci.com/gh/supergraphql/graphql-cli-prepare)[![Greenkeeper badge](https://img.shields.io/badge/renovate-enabled-brightgreen.svg?style=flat-square)](https://renovateapp.com/)[![Code Climate](https://img.shields.io/codeclimate/maintainability/supergraphql/graphql-cli-prepare.svg?style=flat-square)](https://codeclimate.com/github/supergraphql/graphql-cli-prepare) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsupergraphql%2Fgraphql-cli-prepare.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fsupergraphql%2Fgraphql-cli-prepare?ref=badge_shield)
+  
 Plugin for [`graphql-cli`](https://github.com/graphql-cli/graphql-cli) to bundle schemas using [`graphql-import`](https://github.com/graphcool/graphql-import) and generate bindings using [`graphql-static-binding`](https://github.com/supergraphql/graphql-static-binding).
 
 ## Installation
@@ -96,3 +97,7 @@ projects:
   <img src="https://img.shields.io/badge/built-with_love-blue.svg?style=for-the-badge"/><a href="https://github.com/kbrandwijk" target="-_blank"><img src="https://img.shields.io/badge/by-kim_brandwijk-blue.svg?style=for-the-badge"/></a>
 </p>
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsupergraphql%2Fgraphql-cli-prepare.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fsupergraphql%2Fgraphql-cli-prepare?ref=badge_large)
