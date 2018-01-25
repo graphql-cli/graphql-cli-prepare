@@ -1687,9 +1687,9 @@ safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@~5.1.0, 
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
 
-semantic-release@12.2.4:
-  version "12.2.4"
-  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-12.2.4.tgz#cbcf0842ab65a4da1908f48e05a4d895c58d539d"
+semantic-release@12.2.5:
+  version "12.2.5"
+  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-12.2.5.tgz#595cdffc4226a1974c3257052b6ee259c2353568"
   dependencies:
     "@semantic-release/commit-analyzer" "^5.0.0"
     "@semantic-release/error" "^2.1.0"
