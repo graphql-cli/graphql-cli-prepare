@@ -57,8 +57,8 @@ Out of the box, the following generators are provided by [`graphql-static-bindin
 
 | Generator    | Purpose                                      |
 | ------------ | -------------------------------------------- |
-| graphcool-ts | Typescript bindings for Graphcool endpoints  |
-| graphcool-js | Javascript bindings for Graphcool endpoints  |
+| prisma-ts    | Typescript bindings for Prisma endpoints     |
+| prisma-js    | Javascript bindings for Prisma endpoints     |
 | binding-ts   | Typescript bindings for any GraphQL endpoint |
 | binding-js   | Javascript bindings for any GraphQL endpoint |
 
@@ -82,12 +82,12 @@ projects:
         default: 'http://localhost:4000'
 +       prepare-bundle: src/generated/app.graphql
   database:
-    schemaPath: database/schema.generated.graphql
+    schemaPath: src/generated/prisma.graphql
     extensions:
-      graphcool: graphcool.yml
+      prisma: prisma.yml
 +     prepare-binding:
-+       output: src/generated/database.ts
-+       generator: graphcool-ts
++       output: src/generated/prisma.ts
++       generator: prisma-ts
 
 ```
 
