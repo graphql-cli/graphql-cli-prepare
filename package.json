@@ -41,7 +41,7 @@
   "dependencies": {
     "chalk": "2.3.1",
     "fs-extra": "5.0.0",
-    "graphql-import": "0.4.3",
+    "graphql-import": "0.4.4",
     "graphql-static-binding": "0.9.3",
     "lodash": "4.17.5"
   }
