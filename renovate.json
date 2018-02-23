@@ -1,9 +1,7 @@
 {
     "semanticCommits": true,
+    "automerge": true,
     "extends": [
       "config:base"
-    ],
-    "devDependencies": {
-        "automerge": true
-    }
+    ]
   }
