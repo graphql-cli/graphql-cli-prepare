@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/supergraphql/graphql-cli-prepare#readme",
   "devDependencies": {
-    "@types/fs-extra": "5.0.0",
+    "@types/fs-extra": "5.0.1",
     "@types/inquirer": "0.0.36",
     "@types/node": "9.4.6",
     "@types/yargs": "11.0.0",
