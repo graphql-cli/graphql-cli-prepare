@@ -8,7 +8,7 @@
     "prepublish": "npm run build",
     "build": "tsc -d",
     "pretest": "npm run build",
-    "lint": "tslint src/**/*.ts"
+    "test": "tslint src/**/*.ts"
   },
   "repository": {
     "type": "git",
