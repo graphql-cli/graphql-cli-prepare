@@ -906,7 +906,7 @@ graphql-static-binding@0.9.3:
   dependencies:
     cucumber-html-reporter "^3.0.4"
 
-graphql@^0.13.1:
+graphql@0.13.1:
   version "0.13.1"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.13.1.tgz#9b3db3d8e40d1827e4172404bfdd2e4e17a58b55"
   dependencies:
