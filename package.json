@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/supergraphql/graphql-cli-prepare.git"
+    "url": "https://github.com/graphql-cli/graphql-cli-prepare.git"
   },
   "keywords": [
     "graphql",
@@ -22,9 +22,9 @@
   "author": "Kim Brandwijk <kim.brandwijk@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/supergraphql/graphql-cli-prepare/issues"
+    "url": "https://github.com/graphql-cli/graphql-cli-prepare/issues"
   },
-  "homepage": "https://github.com/supergraphql/graphql-cli-prepare#readme",
+  "homepage": "https://github.com/graphql-cli/graphql-cli-prepare#readme",
   "devDependencies": {
     "@types/fs-extra": "5.0.1",
     "@types/inquirer": "0.0.36",
