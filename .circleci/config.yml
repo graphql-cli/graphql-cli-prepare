@@ -6,18 +6,7 @@ jobs:
       - image: circleci/node:latest
     steps:
       - checkout
-      - run:
-          name: update-npm
-          command: 'sudo npm install -g yarn@latest'
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-yarn
-          command: yarn install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: release
-          command: yarn semantic-release || true
+      - run: sudo npm install -g yarn semantic-release
+      - run: yarn install
+      - run: yarn test
+      - run: semantic-release
