@@ -145,7 +145,7 @@ export class Prepare {
     const outputPath: string = this.determineBindingOutputPath(extension)
     const schema: string = this.determineInputSchema(schemaPath)
 
-    const schemaContents: string = fs.readFileSync(schema, 'utf-8')
+    const schemaContents: string = importSchema(schema)
     const finalSchema: string = generateCode(schemaContents, generator)
     fs.writeFileSync(outputPath, finalSchema, { flag: 'w' })
 
