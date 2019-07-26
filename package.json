@@ -42,6 +42,6 @@
     "fs-extra": "5.0.0",
     "graphql-import": "0.4.5",
     "graphql-static-binding": "0.9.3",
-    "lodash": "4.17.5"
+    "lodash": "4.17.11"
   }
 }
